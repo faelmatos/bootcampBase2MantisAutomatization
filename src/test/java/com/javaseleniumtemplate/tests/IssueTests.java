@@ -99,14 +99,23 @@ public class IssueTests extends TestBase {
         viewAllBugPage = new ViewAllBugPage();
         viewIssuePage = new ViewIssuePage();
         bugChangeStatusPage = new BugChangeStatusPage();
+        bugUpdatePage = new BugUpdatePage();
 
         //Parameters
         String newStatus = "resolved";
         String resolution = "fixed";
         String note = "Issue implemented successfully ";
+        String status = "confirmed";
 
         //Tests
         loginFlows.login();
+
+        //Certifica que estará com o cenário ideal para que o caso de teste seja executado
+        issueFlows.goToViewIssuesAndSearchIssue();
+        viewAllBugPage.clickOnEditIssue();
+        bugUpdatePage.selectStatus(status);
+        bugUpdatePage.clickOnUpdateInformationButton();
+        //Início do Caso de Teste
         issueFlows.goToViewIssuesAndSearchIssue();
         viewAllBugPage.clickOnIdIssue();
         viewIssuePage.selectNewStatus(newStatus);

@@ -32,7 +32,24 @@ public class LoginTests extends TestBase {
         loginPage.typePassword(password);
         loginPage.clickOnLogin();
 
-
         Assert.assertTrue(myViewPage.returnMessageFromUserLoggedWithSuccess().contains(expectedLoggedUserMessage));
+    }
+
+    @Test
+    public void loginWithInvalidCredentials(){
+        //Objects instances
+        loginPage = new LoginPage();
+
+        //Parameteres
+        String user = "incorrectemail@me.com";
+        String password = "123456";
+        String expectedErrorMessage = "Your account may be disabled or blocked or the username/password";
+
+        //Test
+        loginPage.typeUser(user);
+        loginPage.typePassword(password);
+        loginPage.clickOnLogin();
+
+        Assert.assertTrue(loginPage.returnErrorMessageLogin().contains(expectedErrorMessage));
     }
 }

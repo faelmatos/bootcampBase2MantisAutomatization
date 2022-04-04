@@ -8,18 +8,21 @@ public class LoginPage extends PageBase {
     By usernameField = By.name("username");
     By passwordField = By.name("password");
     By loginButton = By.xpath("//input[@type='submit']");
+    By errorMessageText = By.xpath("//font");
 
     //Actions
     public void typeUser(String usuario){
         sendKeys(usernameField, usuario);
     }
-
     public void typePassword(String senha){
         sendKeys(passwordField, senha);
     }
-
     public void clickOnLogin(){
         click(loginButton);
+    }
+    public String returnErrorMessageLogin(){
+        waitForElement(errorMessageText);
+        return getText(errorMessageText);
     }
 
 }
